@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gestor de Obras Contratadas pelo Incorporador</title>
+<meta name="description" content="Sistema que analisa relatos semanais de obra, cruza com contrato e histórico, e recomenda quando validar, questionar, formalizar por escrito ou escalar com a construtora.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <div class="brand"><span class="dot">●</span> Gestor de Obras Contratadas pelo Incorporador</div>
+    <div class="nav-links">
+      <a href="index.html" class="current">Visão geral</a>
+      <a href="simulacao.html">Simulação real</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">Camada 1 — apoio à fiscalização contratual</p>
+      <h1 class="hero-title">Acompanhar obra contratada não devia depender só da memória do gestor.</h1>
+      <p class="hero-lede">
+        Toda semana, o sistema lê o relato do gestor, busca o contrato, o cronograma
+        e o histórico do empreendimento, e recomenda se a situação pode ser validada
+        de rotina — ou se já é hora de formalizar por escrito com a construtora.
+      </p>
+      <div class="hero-actions">
+        <a href="simulacao.html" class="btn btn-primary">Ver um caso real →</a>
+        <a href="#como-funciona" class="btn btn-ghost">Como funciona</a>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head">
+        <span>Empreendimento A1 · Construtora C1</span>
+        <span>Semana 23–27/06</span>
+      </div>
+      <div class="axis-row">
+        <span class="axis-name">Escopo</span>
+        <span class="axis-status ok">SEM DESVIO</span>
+      </div>
+      <div class="axis-row">
+        <span class="axis-name">Prazo</span>
+        <span class="axis-status ok">SEM DESVIO</span>
+      </div>
+      <div class="axis-row">
+        <span class="axis-name">Custo</span>
+        <span class="axis-status ok">SEM DESVIO</span>
+      </div>
+      <div class="axis-row">
+        <span class="axis-name">Qualidade</span>
+        <span class="axis-status ok">SEM DESVIO</span>
+      </div>
+      <div class="axis-row">
+        <span class="axis-name">Risco</span>
+        <span class="axis-status warn">ATENÇÃO</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <p class="section-label">O problema</p>
+      <h2>Cada relato semanal é lido isoladamente — o risco não.</h2>
+      <p class="section-desc">
+        Um gestor de empreendimentos acompanha várias obras ao mesmo tempo, cada uma
+        com sua construtora, seu contrato e seu histórico de riscos. Olhando só a
+        semana corrente, um risco "sob acompanhamento" parece sempre razoável de
+        deixar para depois — até a terceira ou quarta semana em que isso se repete
+        sem resposta formal da construtora.
+      </p>
+    </div>
+
+    <div class="card-grid">
+      <div class="info-card">
+        <h3>Entrada manual</h3>
+        <p>O gestor preenche um formulário por semana, por empreendimento, com base no que observou em campo.</p>
+      </div>
+      <div class="info-card">
+        <h3>Memória limitada</h3>
+        <p>Sem reler o histórico completo, é fácil tratar um risco recorrente como se fosse novo a cada semana.</p>
+      </div>
+      <div class="info-card">
+        <h3>Responsabilidade contratual</h3>
+        <p>O contrato muitas vezes já define de quem é a obrigação — mas raramente é consultado linha a linha toda semana.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="como-funciona">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="section-label">Como funciona</p>
+      <h2>Do relato semanal à recomendação, em um fluxo automático.</h2>
+      <p class="section-desc">
+        O sistema não substitui o gestor — ele organiza o que já existe (relato,
+        contrato, cronograma, histórico) e devolve uma leitura objetiva antes da
+        decisão ser tomada.
+      </p>
+    </div>
+
+    <div class="flow">
+      <div class="flow-step">
+        <span class="step-no">01</span>
+        <h4>Relato semanal</h4>
+        <p>Gestor preenche o formulário com a situação do empreendimento na semana.</p>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <span class="step-no">02</span>
+        <h4>Busca de contexto</h4>
+        <p>O fluxo localiza no SharePoint o contrato, o cronograma e o histórico de relatos anteriores.</p>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <span class="step-no">03</span>
+        <h4>Análise</h4>
+        <p>Tudo é enviado à Claude, que compara previsto x realizado e verifica recorrência de riscos.</p>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <span class="step-no">04</span>
+        <h4>Classificação</h4>
+        <p>A situação é classificada em uma de quatro rotas de ação possíveis.</p>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <span class="step-no">05</span>
+        <h4>E-mail + histórico</h4>
+        <p>O gestor recebe o e-mail com a recomendação, e o histórico é atualizado para a próxima semana.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <p class="section-label">Saída do sistema</p>
+      <h2>Toda semana, uma de quatro rotas.</h2>
+      <p class="section-desc">
+        A classificação não é um placar de bom ou mau desempenho — é uma indicação
+        de qual tipo de ação cabe ao gestor tomar naquele momento.
+      </p>
+    </div>
+
+    <div class="routes-grid">
+      <div class="route-card validar">
+        <p class="route-name">validar</p>
+        <p>Situação dentro do esperado. Acompanhamento de rotina é suficiente.</p>
+      </div>
+      <div class="route-card questionar">
+        <p class="route-name">questionar_construtora</p>
+        <p>Há um ponto que merece esclarecimento direto com a construtora antes de avançar.</p>
+      </div>
+      <div class="route-card formalizar">
+        <p class="route-name">formalizar_por_escrito</p>
+        <p>O histórico mostra recorrência ou prazo vencido — é hora de registrar a solicitação por escrito.</p>
+      </div>
+      <div class="route-card escalar">
+        <p class="route-name">escalar</p>
+        <p>O risco já compromete marco contratual ou exige decisão acima do gestor de obra.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="cta-banner">
+      <div>
+        <h3>Um caso real em que o sistema discordou do gestor</h3>
+        <p>
+          Na simulação de teste, o gestor esperava uma recomendação de rotina.
+          O sistema, ao cruzar com três semanas de histórico, recomendou
+          formalizar por escrito — e explicou exatamente por quê.
+        </p>
+      </div>
+      <a href="simulacao.html" class="btn btn-primary">Ver a simulação completa →</a>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <span>Gestor de Obras Contratadas pelo Incorporador — Camada 1</span>
+  <span>Forms · SharePoint · Power Automate · Claude (Anthropic) · Outlook</span>
+</footer>
+
+</body>
+</html>

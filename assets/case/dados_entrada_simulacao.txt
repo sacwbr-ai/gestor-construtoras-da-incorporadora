@@ -1,0 +1,86 @@
+SISTEMA DE APOIO AO GESTOR DE EMPREENDIMENTOS — CAMADA 1
+Dados de entrada da simulação de teste
+Formulário de origem: Relato Semanal de Obra — Camada 1 v3 (Microsoft Forms)
+Data de envio: 21/06/2026
+
+==============================================================
+RESUMO DAS RESPOSTAS ENVIADAS PELO GESTOR
+==============================================================
+
+Empreendimento / obra .............. Empreendimento A1
+Construtora contratada ............. Construtora C1
+Data da 2a feira da semana ......... 2026-06-15 (mais recente disponível no teste)
+Etapa atual da obra ................ Alvenaria
+
+--- Escopo ---
+Item executado diverge do projeto/memorial aprovado? .... Não
+Pedido de alteração de escopo em curso? .................. Não
+Item entregue precisou ser refeito? ...................... Não
+
+--- Prazo ---
+Avanço físico conforme cronograma aprovado? .............. Sim
+
+--- Custo ---
+Medição coerente com avanço físico verificado? ........... Sim
+Pleito de reequilíbrio econômico/aditivo em discussão? ... Não
+Glosa ou questionamento de medição? ...................... Não
+
+--- Qualidade ---
+Houve inspeção ou vistoria no período? ................... Sim
+Resultado da inspeção/vistoria ........................... Aprovado sem ressalvas
+Não conformidades abertas? ............................... Não
+Pendência de documentação de entrega? .................... Não
+
+--- Risco ---
+Riscos identificados para a próxima etapa:
+  Construtora comunicou possível atraso no fornecimento de
+  esquadrias e revestimentos; aguardando confirmação de prazo
+  revisado conforme solicitado em 06/06.
+
+Risco já se manifestou em outro empreendimento da carteira
+com a mesma construtora? ................................. Não
+
+O que já foi tentado ou comunicado à construtora:
+  Solicitado plano de mitigação à construtora em 06/06/2026.
+
+O que está travando o avanço/resolução:
+  Aguardando resposta formal da construtora sobre o prazo
+  revisado.
+
+O que o gestor precisa neste momento:
+  Validação — acompanhamento de rotina, risco já monitorado.
+
+Observações adicionais: (não preenchido)
+
+==============================================================
+EXPECTATIVA DO GESTOR ANTES DO ENVIO
+==============================================================
+O gestor preencheu este cenário esperando como retorno do sistema
+a classificação "validar" ou, no máximo, "questionar_construtora" —
+já que, da perspectiva da semana isolada, o risco de fornecimento
+estava identificado e "sob acompanhamento", sem fatos novos que
+parecessem justificar uma ação mais formal.
+
+==============================================================
+O QUE O SISTEMA TINHA À DISPOSIÇÃO (E O GESTOR NÃO CONSULTOU)
+==============================================================
+Ao processar esta resposta, o sistema buscou automaticamente no
+SharePoint o histórico de relatos anteriores (registros.txt) do
+Empreendimento A1 e encontrou o mesmo risco de fornecimento de
+esquadrias/revestimentos relatado em três semanas consecutivas
+(2026-06-01, 2026-06-08 e a presente semana), com confirmação
+formal da Construtora C1 em 05/06/2026 e sem resposta ao pedido
+de plano de mitigação feito em 06/06/2026 — uma pendência de 20
+dias até a data do relato.
+
+A cláusula 8 do contrato de construção (15/02/2026) atribui à
+Construtora a responsabilidade pelo planejamento e aquisição
+antecipada de materiais críticos.
+
+Resultado: classificação retornada pelo sistema foi
+"formalizar_por_escrito" — divergindo da expectativa inicial do
+gestor, justamente por considerar o padrão de recorrência que só
+é visível ao longo do histórico, não em uma leitura isolada da
+semana.
+
+Veja o e-mail de resultado completo em: email_resultado_simulacao.html
