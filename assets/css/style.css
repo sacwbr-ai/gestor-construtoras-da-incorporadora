@@ -296,6 +296,160 @@ h3 {
 }
 .route-card p { font-size: 13.5px; color: var(--text-1); margin: 0; }
 
+/* ---------- Folder tree (estrutura de pastas do SharePoint) ---------- */
+.folder-tree {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  margin-top: 28px;
+  font-family: var(--f-mono);
+  font-size: 13.5px;
+}
+.folder-tree-note {
+  font-family: var(--f-body);
+  font-size: 13.5px;
+  color: var(--text-1);
+  margin: 0 0 18px 0;
+}
+.ft-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 5px 0;
+  color: var(--text-1);
+}
+.ft-row .ft-icon { color: var(--text-2); flex-shrink: 0; }
+.ft-row .ft-name { color: var(--text-0); }
+.ft-row .ft-desc { color: var(--text-2); font-family: var(--f-body); font-size: 12.5px; }
+.ft-l1 { padding-left: 0; }
+.ft-l2 { padding-left: 22px; }
+.ft-l3 { padding-left: 44px; }
+.ft-row.ft-highlight .ft-name { color: var(--amber); }
+
+/* ---------- Subsection heading (inside an existing section) ---------- */
+.subsection-head {
+  margin-top: 56px;
+  margin-bottom: 0;
+}
+.subsection-head h3 { font-size: 17px; margin-bottom: 6px; }
+.subsection-head p { color: var(--text-1); font-size: 14px; margin: 0; }
+
+/* ============================================================
+   Página "Como foi construído"
+   ============================================================ */
+
+.build-trail {
+  position: relative;
+  padding-left: 0;
+}
+.build-step {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 24px;
+  padding: 36px 0;
+  border-bottom: 1px solid var(--line);
+}
+.build-step:first-child { padding-top: 0; }
+.build-step:last-child { border-bottom: none; padding-bottom: 0; }
+
+.build-step-no {
+  font-family: var(--f-mono);
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--text-2);
+  line-height: 1;
+}
+.build-step.is-longest .build-step-no { color: var(--amber); }
+
+.build-step-body h3 {
+  font-size: 19px;
+  margin-bottom: 10px;
+}
+.build-step-body > p {
+  color: var(--text-1);
+  font-size: 14.5px;
+  margin: 0 0 14px 0;
+  max-width: 640px;
+}
+.duration-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--f-mono);
+  font-size: 11.5px;
+  color: var(--amber);
+  background: var(--amber-dim);
+  border-radius: 100px;
+  padding: 4px 12px;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.substep-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: substep;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg-1);
+  overflow: hidden;
+}
+.substep-list li {
+  counter-increment: substep;
+  display: flex;
+  gap: 14px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+  font-size: 13.5px;
+  color: var(--text-1);
+}
+.substep-list li:last-child { border-bottom: none; }
+.substep-list li::before {
+  content: counter(substep);
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--amber);
+  background: var(--amber-dim);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.substep-list li strong { color: var(--text-0); font-weight: 500; }
+
+.detour-note {
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--st-questionar);
+  border-radius: 8px;
+  padding: 14px 18px;
+  font-size: 13.5px;
+  color: var(--text-1);
+  margin-top: 14px;
+}
+.detour-note strong { color: var(--text-0); }
+
+.next-step-card {
+  background: var(--st-questionar-bg);
+  border: 1px solid var(--st-questionar);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+.next-step-card .tag {
+  border-color: var(--st-questionar);
+  color: var(--st-questionar);
+  margin-bottom: 12px;
+}
+.next-step-card p { color: var(--text-0); font-size: 14.5px; margin: 0; }
+.next-step-card p + p { margin-top: 10px; color: var(--text-1); }
+
 /* ---------- Cards / grid ---------- */
 .card-grid {
   display: grid;

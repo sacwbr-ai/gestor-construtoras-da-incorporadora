@@ -17,6 +17,7 @@
     <div class="nav-links">
       <a href="index.html">Visão geral</a>
       <a href="simulacao.html" class="current">Simulação real</a>
+      <a href="construcao.html">Como foi construído</a>
     </div>
   </div>
 </nav>
@@ -46,6 +47,28 @@
     </div>
   </div>
 </header>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="section-label">Origem dos dados</p>
+      <h2>O ponto de partida: o formulário semanal</h2>
+      <p class="section-desc">
+        Todo o ciclo começa com o gestor preenchendo este formulário, uma vez
+        por semana, por empreendimento.
+      </p>
+    </div>
+
+    <div class="qr-card">
+      <img src="assets/img/qrcode_relato_semanal.png" alt="QR code de acesso ao formulário Relato Semanal de Obra — Camada 1 v3">
+      <div class="qr-text">
+        <div style="color: var(--text-0); font-weight: 500; margin-bottom: 6px;">Relato Semanal de Obra — Camada 1 v3</div>
+        Formulário real usado nesta simulação, hospedado no Microsoft Forms.<br>
+        <a href="https://forms.cloud.microsoft/r/cRW2FQVN1T" target="_blank" rel="noopener">forms.cloud.microsoft/r/cRW2FQVN1T</a>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section>
   <div class="wrap">
@@ -175,7 +198,7 @@
           <div class="dl-name">dados_entrada_simulacao.txt</div>
           <div class="dl-meta">Resumo das respostas enviadas no formulário</div>
         </div>
-        <a class="dl-btn" href="assets/case/dados_entrada_simulacao.txt" download>Baixar</a>
+        <a class="dl-btn js-download" href="assets/case/dados_entrada_simulacao.txt" data-filename="dados_entrada_simulacao.txt">Baixar</a>
       </div>
       <div class="download-card">
         <span class="dl-icon">↓</span>
@@ -183,29 +206,7 @@
           <div class="dl-name">email_resultado_simulacao.html</div>
           <div class="dl-meta">E-mail de resultado completo</div>
         </div>
-        <a class="dl-btn" href="assets/case/email_resultado_simulacao.html" download>Baixar</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="alt">
-  <div class="wrap">
-    <div class="section-head">
-      <p class="section-label">Origem dos dados</p>
-      <h2>O ponto de partida: o formulário semanal</h2>
-      <p class="section-desc">
-        Todo o ciclo começa com o gestor preenchendo este formulário, uma vez
-        por semana, por empreendimento.
-      </p>
-    </div>
-
-    <div class="qr-card">
-      <img src="assets/img/qrcode_relato_semanal.png" alt="QR code de acesso ao formulário Relato Semanal de Obra — Camada 1 v3">
-      <div class="qr-text">
-        <div style="color: var(--text-0); font-weight: 500; margin-bottom: 6px;">Relato Semanal de Obra — Camada 1 v3</div>
-        Formulário real usado nesta simulação, hospedado no Microsoft Forms.<br>
-        <a href="https://forms.cloud.microsoft/r/cRW2FQVN1T" target="_blank" rel="noopener">forms.cloud.microsoft/r/cRW2FQVN1T</a>
+        <a class="dl-btn js-download" href="assets/case/email_resultado_simulacao.html" data-filename="email_resultado_simulacao.html">Baixar</a>
       </div>
     </div>
   </div>
@@ -215,6 +216,37 @@
   <span>Gestor de Obras Contratadas pelo Incorporador — Camada 1</span>
   <a href="index.html">← Voltar para a visão geral</a>
 </footer>
+
+<script>
+  // Download forçado via blob: mais confiável que o atributo `download` puro
+  // em navegadores mobile (especialmente Safari/iOS), que às vezes ignoram
+  // o atributo e apenas navegam/abrem o arquivo em vez de salvá-lo.
+  document.querySelectorAll('.js-download').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      var url = link.getAttribute('href');
+      var filename = link.getAttribute('data-filename') || url.split('/').pop();
+
+      fetch(url)
+        .then(function (res) { return res.blob(); })
+        .then(function (blob) {
+          var blobUrl = URL.createObjectURL(blob);
+          var a = document.createElement('a');
+          a.href = blobUrl;
+          a.download = filename;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          setTimeout(function () { URL.revokeObjectURL(blobUrl); }, 1000);
+        })
+        .catch(function () {
+          // Se o fetch falhar (ex: arquivo bloqueado por CORS em file://),
+          // recorre à navegação direta como última alternativa.
+          window.location.href = url;
+        });
+    });
+  });
+</script>
 
 </body>
 </html>

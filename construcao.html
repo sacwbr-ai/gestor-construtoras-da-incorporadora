@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Como foi construído | Gestor de Obras Contratadas pelo Incorporador</title>
+<meta name="description" content="O caminho real de implementação do sistema: do desenho do formulário ao fluxo no Power Automate, os testes de calibração e o próximo passo ainda em aberto.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <div class="brand"><span class="dot">●</span> Gestor de Obras Contratadas pelo Incorporador</div>
+    <div class="nav-links">
+      <a href="index.html">Visão geral</a>
+      <a href="simulacao.html">Simulação real</a>
+      <a href="construcao.html" class="current">Como foi construído</a>
+    </div>
+  </div>
+</nav>
+
+<header class="case-header">
+  <div class="wrap">
+    <div class="case-tags">
+      <span class="tag">Bastidores do projeto</span>
+      <span class="tag">Forms → SharePoint → Power Automate → Claude</span>
+    </div>
+    <h1 class="hero-title" style="font-size: 34px; max-width: 720px;">
+      Como o sistema foi montado, passo a passo.
+    </h1>
+    <p class="hero-lede" style="max-width: 640px;">
+      Nenhuma dessas etapas exigiu escrever uma linha de código tradicional —
+      mas exigiu decisões de configuração, organização de pastas e bastante
+      tentativa e ajuste até o fluxo responder de forma confiável.
+    </p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="build-trail">
+
+      <div class="build-step">
+        <div class="build-step-no">01</div>
+        <div class="build-step-body">
+          <h3>Desenho e criação do formulário</h3>
+          <p>
+            As 33 perguntas foram definidas primeiro, organizadas pelos cinco
+            eixos analisados pelo sistema (escopo, prazo, custo, qualidade,
+            risco). A primeira tentativa de criar o formulário foi como
+            formulário <strong>pessoal</strong> no Microsoft Forms.
+          </p>
+          <div class="detour-note">
+            <strong>Ajuste de rota:</strong> um formulário pessoal salva as
+            respostas no OneDrive individual, não em um SharePoint de equipe —
+            o que não serve para o fluxo de automação. A correção foi criar um
+            <strong>Team no Microsoft Teams</strong> (que já gera o site do
+            SharePoint correspondente) e recriar o formulário de dentro dele,
+            como formulário de grupo.
+          </div>
+        </div>
+      </div>
+
+      <div class="build-step">
+        <div class="build-step-no">02</div>
+        <div class="build-step-body">
+          <h3>Conexão automática entre Forms e Excel</h3>
+          <p>
+            Por ser um formulário de grupo, cada resposta passou a gerar
+            automaticamente uma linha em uma planilha Excel hospedada na
+            biblioteca de documentos do site do Team — sem nenhuma
+            configuração manual de conexão. Essa planilha é o ponto de partida
+            que o Power Automate passa a observar.
+          </p>
+        </div>
+      </div>
+
+      <div class="build-step">
+        <div class="build-step-no">03</div>
+        <div class="build-step-body">
+          <h3>Organização das pastas por empreendimento</h3>
+          <p>
+            Antes do fluxo poder buscar qualquer documento automaticamente,
+            era preciso existir um lugar padronizado para buscar. Cada
+            empreendimento da carteira recebeu a mesma estrutura de pastas no
+            SharePoint — contratuais, planejamento, histórico e qualidade —
+            replicada de forma idêntica para todas as obras.
+          </p>
+        </div>
+      </div>
+
+      <div class="build-step is-longest">
+        <div class="build-step-no">04</div>
+        <div class="build-step-body">
+          <span class="duration-badge">Etapa mais longa e detalhada do projeto</span>
+          <h3>Construção do fluxo no Power Automate</h3>
+          <p>
+            Dez blocos de trabalho, construídos e testados um a um — a parte
+            que consumiu a maior parte do tempo de implementação, por
+            envolver tentativa e erro até cada bloco funcionar de forma
+            confiável.
+          </p>
+          <ol class="substep-list">
+            <li>Documentos de teste carregados no SharePoint — contrato, cronograma e histórico, para o fluxo ter o que buscar.</li>
+            <li>Busca do histórico do empreendimento (<strong>registros.txt</strong>).</li>
+            <li>Busca dos documentos PDF — contrato e cronograma físico-financeiro.</li>
+            <li>Montagem da mensagem enviada à API da Claude, combinando o texto do formulário com os documentos anexados.</li>
+            <li>Teste de ponta a ponta, confirmando que a análise de fato cruza contrato, cronograma e histórico — não responde de forma genérica.</li>
+            <li><strong>Parse da resposta</strong> — transforma o JSON retornado pela API em campos separados e utilizáveis pelo fluxo (classificação, leitura da situação, e-mail, alertas).</li>
+            <li>Composição e envio do e-mail HTML ao gestor, via Outlook.</li>
+            <li>Atualização automática do histórico do empreendimento a cada execução, fechando o loop de memória para a semana seguinte.</li>
+            <li>Proteção contra envio com campo essencial vazio, antes de qualquer chamada à API.</li>
+            <li>Teste piloto completo, cobrindo as quatro rotas de classificação possíveis.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="build-step">
+        <div class="build-step-no">05</div>
+        <div class="build-step-body">
+          <h3>Testes de calibração</h3>
+          <p>
+            Foram rodados ciclos de teste cobrindo, de forma deliberada, as
+            quatro rotas de classificação possíveis — <code>validar</code>,
+            <code>questionar_construtora</code>, <code>formalizar_por_escrito</code>
+            e <code>escalar</code> — até o comportamento do sistema ficar
+            consistente e a resposta proporcional à gravidade real de cada
+            cenário, em vez de tender sempre para a opção mais alarmante.
+          </p>
+        </div>
+      </div>
+
+      <div class="build-step">
+        <div class="build-step-no">06</div>
+        <div class="build-step-body">
+          <h3>Resultado: e-mail de recomendação ao gestor</h3>
+          <p>
+            O ponto de chegada do fluxo — um e-mail estruturado, com leitura
+            da situação, classificação recomendada e rascunho de comunicação
+            quando aplicável. Um caso real desse resultado está detalhado na
+            página de simulação.
+          </p>
+          <a href="simulacao.html" class="btn btn-ghost" style="margin-top: 4px;">Ver o caso real →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="section-label">Próximo passo</p>
+      <h2>O que ainda não foi automatizado</h2>
+    </div>
+
+    <div class="next-step-card">
+      <span class="tag">Em aberto</span>
+      <p>
+        Hoje, depois que o gestor recebe o e-mail com a recomendação, a
+        decisão que ele efetivamente toma — validar, questionar, formalizar
+        ou escalar — não retorna automaticamente ao sistema.
+      </p>
+      <p>
+        Fechar esse ciclo significaria capturar essa resposta do gestor e
+        gravá-la de volta no histórico do empreendimento, para que a análise
+        da semana seguinte já leve em conta não só o que foi relatado, mas
+        também o que foi efetivamente decidido. É a evolução natural seguinte
+        do sistema, ainda não implementada.
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <span>Gestor de Obras Contratadas pelo Incorporador — Camada 1</span>
+  <a href="index.html">← Voltar para a visão geral</a>
+</footer>
+
+</body>
+</html>
