@@ -174,6 +174,40 @@
         do sistema, ainda não implementada.
       </p>
     </div>
+
+    <div class="next-step-card" style="margin-top: 20px;">
+      <span class="tag">Em aberto</span>
+      <p>
+        Hoje o e-mail de resultado vai para um destinatário fixo, independente
+        de qual empreendimento ou gestor está envolvido — o sistema ainda não
+        sabe "de quem" é cada obra.
+      </p>
+      <p>
+        A evolução prevista é criar uma tabela de mapeamento
+        (<code>Empreendimento → Gestor → E-mail Gestor → Gerente → E-mail
+        Gerente</code>) no SharePoint, que o fluxo consulta antes de enviar o
+        e-mail. Isso resolve de uma só vez três necessidades operacionais sem
+        nunca mais precisar tocar no fluxo: chegada de obra nova, troca de
+        gestor e troca de gerente passam a ser apenas edição de uma linha
+        dessa tabela.
+      </p>
+    </div>
+
+    <div class="data-table-scroll" style="margin-top: 20px;">
+      <table class="data-table data-table--wide">
+        <tr class="group-row"><th colspan="5">Exemplo de estrutura — Carteira_Empreendimentos</th></tr>
+        <tr>
+          <th>Empreendimento</th>
+          <th>Gestor</th>
+          <th>E-mail Gestor</th>
+          <th>Gerente</th>
+          <th>E-mail Gerente</th>
+        </tr>
+        <tr><td>Empreendimento A1</td><td>[gestor]</td><td>[e-mail]</td><td>[gerente]</td><td>[e-mail]</td></tr>
+        <tr><td>Empreendimento B1</td><td>[gestor]</td><td>[e-mail]</td><td>[gerente]</td><td>[e-mail]</td></tr>
+        <tr><td>Empreendimento C1</td><td>[gestor]</td><td>[e-mail]</td><td>[gerente]</td><td>[e-mail]</td></tr>
+      </table>
+    </div>
   </div>
 </section>
 

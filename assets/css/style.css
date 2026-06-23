@@ -591,6 +591,46 @@ h3 {
   .book-card { flex-direction: column; text-align: center; }
 }
 
+.cycle-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+.cycle-card {
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px;
+}
+.cycle-card.cycle-highlight {
+  border-color: var(--amber);
+  background: linear-gradient(135deg, var(--bg-2), var(--bg-1));
+}
+.cycle-week {
+  font-family: var(--f-mono);
+  font-size: 11.5px;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: 10px;
+}
+.cycle-card h4 {
+  font-family: var(--f-body);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-0);
+  margin: 0 0 8px 0;
+}
+.cycle-card p { color: var(--text-1); font-size: 13.5px; margin: 0; }
+
+@media (max-width: 880px) {
+  .cycle-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .cycle-grid { grid-template-columns: 1fr; }
+}
+
 /* ---------- Cards / grid ---------- */
 .card-grid {
   display: grid;
@@ -723,6 +763,21 @@ footer {
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
+
+/* Variante: cabeçalho horizontal, várias colunas de dados (não par campo/valor) */
+.data-table--wide th { width: auto; white-space: nowrap; }
+.data-table--wide td { white-space: nowrap; }
+.data-table--wide th:first-child,
+.data-table--wide td:first-child { width: 22%; }
+.data-table--wide th:nth-child(2),
+.data-table--wide td:nth-child(2) { width: 14%; }
+.data-table--wide th:nth-child(3),
+.data-table--wide td:nth-child(3) { width: 28%; }
+.data-table--wide th:nth-child(4),
+.data-table--wide td:nth-child(4) { width: 14%; }
+.data-table--wide th:nth-child(5),
+.data-table--wide td:nth-child(5) { width: 22%; }
+
 
 /* Evidence trail — signature element */
 .trail {
